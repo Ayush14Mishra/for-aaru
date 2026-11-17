@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Little Surprise for Aaru ❤️</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #fff0f5, #ffe4ec, #fff5f7);
+            color: #a64d70;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Floating background */
+
+        .floating {
+            position: fixed;
+            bottom: -50px;
+            font-size: 25px;
+            animation: floatUp linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main container */
+
+        .main {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 30px 15px;
+            min-height: 100vh;
+        }
+
+        .top-sticker {
+            font-size: 65px;
+            animation: bounce 2s infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .small-heading {
+            font-size: 16px;
+            letter-spacing: 3px;
+            margin-top: 25px;
+            color: #c46a8b;
+        }
+
+        .name {
+            font-family: 'Pacifico', cursive;
+            font-size: clamp(45px, 10vw, 75px);
+            color: #d45b89;
+            margin: 15px 0;
+            text-shadow: 3px 4px 10px #f5b6cc;
+            animation: appear 2s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: scale(0.6);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .typing {
+            font-size: clamp(18px, 4vw, 25px);
+            font-weight: 600;
+            min-height: 80px;
+            margin: 20px auto;
+            max-width: 700px;
+            color: #a64d70;
+        }
+
+        .typing span {
+            border-right: 3px solid #d45b89;
+            padding-right: 4px;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        .sticker-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .sticker {
+            font-size: 65px;
+            animation: bounce 2s infinite;
+        }
+
+        .sticker:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .sticker:nth-child(3) {
+            animation-delay: 0.8s;
+        }
+
+        /* Main card */
+
+        .card {
+            max-width: 650px;
+            margin: 30px auto;
+            padding: 35px 25px;
+            background: rgba(255, 255, 255, 0.75);
+            border: 2px solid #ffd2e1;
+            border-radius: 30px;
+            box-shadow: 0 10px 35px rgba(206, 106, 145, 0.15);
+        }
+
+        .card h2 {
+            font-family: 'Pacifico', cursive;
+            font-size: 29px;
+            color: #d45b89;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 16px;
+            line-height: 1.9;
+            color: #94536c;
+        }
+
+        /* Buttons */
+
+        .btn {
+            background: linear-gradient(135deg, #ff8fb5, #e66b9b);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            box-shadow: 0 6px 20px #f3b3ca;
+            transition: 0.3s;
+            margin: 15px;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px #eaa0ba;
+        }
+
+        /* Envelope */
+
+        .envelope-section {
+            margin: 50px auto;
+            max-width: 650px;
+        }
+
+        .envelope {
+            font-size: 100px;
+            cursor: pointer;
+            display: inline-block;
+            transition: 0.4s;
+            animation: bounce 2s infinite;
+        }
+
+        .envelope:hover {
+            transform: scale(1.2);
+        }
+
+        .letter {
+            display: none;
+            background: #fffafd;
+            border: 2px dashed #ee9fbc;
+            border-radius: 25px;
+            padding: 30px;
+            margin-top: 25px;
+            animation: appear 1s ease;
+            text-align: left;
+        }
+
+        .letter h2 {
+            font-family: 'Pacifico', cursive;
+            text-align: center;
+            color: #d45b89;
+            margin-bottom: 20px;
+        }
+
+        .letter p {
+            line-height: 2;
+            color: #94536c;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        /* Secret message */
+
+        .secret {
+            display: none;
+            font-family: 'Pacifico', cursive;
+            font-size: 25px;
+            color: #d45b89;
+            margin: 30px 10px;
+            animation: appear 1s ease;
+        }
+
+        /* Footer */
+
+        footer {
+            padding: 35px 10px;
+            color: #c46a8b;
+            font-size: 14px;
+        }
+
+        /* Confetti */
+
+        #confetti {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        @media(max-width: 600px) {
+            .card {
+                padding: 25px 18px;
+            }
+
+            .sticker {
+                font-size: 48px;
+            }
+
+            .letter {
+                padding: 20px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <canvas id="confetti"></canvas>
+
+    <div class="main">
+
+        <!-- Opening -->
+
+        <div class="top-sticker">🎀 🧸 🎀</div>
+
+        <div class="small-heading">
+            A LITTLE SURPRISE FOR
+        </div>
+
+        <div class="name">
+            Aaru ❤️
+        </div>
+
+        <div class="typing">
+            <span id="typed"></span>
+        </div>
+
+        <div class="sticker-row">
+            <div class="sticker">🐰</div>
+            <div class="sticker">🌷</div>
+            <div class="sticker">🧸</div>
+        </div>
+
+        <!-- Congratulations -->
+
+        <div class="card">
+
+            <h2>YOU DID IT!!! 🎓</h2>
+
+            <p>
+                Congratulations Aaru!! 💗
+                <br><br>
+                All those efforts, all that hard work,
+                all those moments of studying and preparing...
+                <br><br>
+                Look at you now!!
+                You deserve every bit of this happiness.
+                <br><br>
+                I hope you know how amazing you are
+                and how proud you should be of yourself.
+                🌸
+            </p>
+
+            <div style="font-size:35px; margin-top:20px;">
+                💗 ✨ 🥹 ✨ 💗
+            </div>
+
+        </div>
+
+        <!-- Little appreciation -->
+
+        <div class="card">
+
+            <h2>A little reminder 🌷</h2>
+
+            <p>
+                Never underestimate yourself.
+                <br><br>
+                You're capable of so many beautiful things
+                and this is just another beginning.
+                <br><br>
+                Keep chasing your dreams,
+                keep smiling and keep being YOU.
+                <br><br>
+                The world better be ready for you, future Executive! 🤭
+            </p>
+
+        </div>
+
+        <!-- Envelope -->
+
+        <div class="envelope-section">
+
+            <h2 style="font-family:Pacifico; font-size:28px;">
+                You have a little letter 💌
+            </h2>
+
+            <p style="margin:15px;">
+                There's something I wanted to tell you...
+            </p>
+
+            <div class="envelope" onclick="openLetter()">
+                💌
+            </div>
+
+            <p style="font-size:13px;">
+                (Psst... click the envelope!)
+            </p>
+
+            <div class="letter" id="letter">
+
+                <h2>Dear Aaru ❤️</h2>
+
+                <p>
+                    First of all, a HUGE congratulations!!
+                    I'm genuinely so happy for you.
+                </p>
+
+                <p>
+                    I know achievements like this don't
+                    come easily, and I hope you take a moment
+                    to appreciate yourself and everything
+                    you've accomplished.
+                </p>
+
+                <p>
+                    You deserve all the good things coming
+                    your way. Never stop believing in yourself.
+                </p>
+
+                <p>
+                    And honestly, getting to know someone
+                    as lovely as you has been a pretty
+                    wonderful thing too. 🤭
+                </p>
+
+                <p style="text-align:right; font-family:Pacifico; color:#d45b89;">
+                    Keep smiling, Aaru! 💗
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Secret surprise -->
+
+        <div class="card">
+
+            <h2>Wait... one more thing! 👀</h2>
+
+            <p>
+                You thought that was everything?
+                Nope. There's one tiny surprise left.
+            </p>
+
+            <button class="btn" onclick="showSecret()">
+                Open your surprise 💗
+            </button>
+
+            <div class="secret" id="secret">
+                You're someone worth smiling about. ❤️
+                <br>
+                And I'm really glad I know you. 🥹
+            </div>
+
+        </div>
+
+        <footer>
+            Made with a little extra effort, just for Aaru 🎀
+            <br><br>
+            Congratulations once again!! ❤️
+        </footer>
+
+    </div>
+
+    <script>
+
+        // Typing animation
+
+        const messages = [
+            "Hey Aaru! ❤️",
+            "YOU DID IT!! 🎀",
+            "Congratulations on passing your CS exam!",
+            "All that hard work finally paid off ✨",
+            "I'm genuinely so proud of you! 💗",
+            "Keep shining, pretty girl! 🌷"
+        ];
+
+        let messageIndex = 0;
+        let charIndex = 0;
+        let deleting = false;
+
+        const typed = document.getElementById("typed");
+
+        function typeEffect() {
+
+            const current = messages[messageIndex];
+
+            if (!deleting) {
+
+                typed.textContent = current.substring(0, charIndex + 1);
+                charIndex++;
+
+                if (charIndex === current.length) {
+                    deleting = true;
+                    setTimeout(typeEffect, 1700);
+                    return;
+                }
+
+            } else {
+
+                typed.textContent = current.substring(0, charIndex - 1);
+                charIndex--;
+
+                if (charIndex === 0) {
+                    deleting = false;
+                    messageIndex = (messageIndex + 1) % messages.length;
+                }
+
+            }
+
+            setTimeout(typeEffect, deleting ? 35 : 75);
+        }
+
+        typeEffect();
+
+
+        // Floating hearts
+
+        const floatingItems = ["💗", "💕", "✨", "🌸", "🎀", "💖"];
+
+        function createFloating() {
+
+            const item = document.createElement("div");
+
+            item.className = "floating";
+            item.textContent =
+                floatingItems[Math.floor(Math.random() * floatingItems.length)];
+
+            item.style.left = Math.random() * 100 + "vw";
+            item.style.animationDuration = (5 + Math.random() * 6) + "s";
+            item.style.fontSize = (18 + Math.random() * 20) + "px";
+
+            document.body.appendChild(item);
+
+            setTimeout(() => {
+                item.remove();
+            }, 11000);
+        }
+
+        setInterval(createFloating, 450);
+
+
+        // Open letter
+
+        function openLetter() {
+
+            const letter = document.getElementById("letter");
+
+            if (letter.style.display === "block") {
+                letter.style.display = "none";
+            } else {
+                letter.style.display = "block";
+                letter.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+                celebrate();
+            }
+
+        }
+
+
+        // Secret message
+
+        function showSecret() {
+
+            document.getElementById("secret").style.display = "block";
+
+            celebrate();
+
+            document.getElementById("secret").scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }
+
+
+        // Confetti animation
+
+        const canvas = document.getElementById("confetti");
+        const ctx = canvas.getContext("2d");
+
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
+
+        function celebrate() {
+
+            const colors = [
+                "#ff8fb5",
+                "#ffc2d6",
+                "#ffd166",
+                "#ffffff",
+                "#e66b9b"
+            ];
+
+            for (let i = 0; i < 130; i++) {
+
+                particles.push({
+
+                    x: Math.random() * canvas.width,
+                    y: -20 - Math.random() * canvas.height * 0.3,
+
+                    size: Math.random() * 8 + 3,
+
+                    speedY: Math.random() * 4 + 2,
+                    speedX: Math.random() * 5 - 2.5,
+
+                    color: colors[
+                        Math.floor(Math.random() * colors.length)
+                    ],
+
+                    rotation: Math.random() * 360
+
+                });
+
+            }
+
+        }
+
+        function animateConfetti() {
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach((p, index) => {
+
+                p.x += p.speedX;
+                p.y += p.speedY;
+                p.rotation += 4;
+
+                ctx.save();
+
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rotation * Math.PI / 180);
+
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+
+                ctx.restore();
+
+                if (p.y > canvas.height + 20) {
+                    particles.splice(index, 1);
+                }
+
+            });
+
+            requestAnimationFrame(animateConfetti);
+
+        }
+
+        animateConfetti();
+
+
+        // Initial celebration
+
+        setTimeout(celebrate, 700);
+
+    </script>
+
+</body>
+</html>
