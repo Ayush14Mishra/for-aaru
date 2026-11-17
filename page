@@ -1,0 +1,604 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Aaru ❤️</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: #fff8f5;
+      color: #694c54;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .background {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 10% 15%, #ffe4ed 0, transparent 30%),
+        radial-gradient(circle at 90% 80%, #e5edff 0, transparent 30%);
+    }
+
+    .decor {
+      position: fixed;
+      font-size: 25px;
+      opacity: 0.65;
+      animation: float 5s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .d1 { top: 8%; left: 7%; }
+    .d2 { top: 18%; right: 9%; animation-delay: 1s; }
+    .d3 { bottom: 14%; left: 9%; animation-delay: 2s; }
+    .d4 { bottom: 10%; right: 8%; animation-delay: 1.5s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-15px) rotate(8deg); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      max-width: 850px;
+      margin: auto;
+      padding: 45px 20px 70px;
+      text-align: center;
+    }
+
+    .top-label {
+      display: inline-block;
+      background: white;
+      color: #d77b9c;
+      padding: 9px 19px;
+      border-radius: 30px;
+      font-size: 12px;
+      letter-spacing: 2px;
+      box-shadow: 0 5px 20px #eacbd4;
+      margin-bottom: 30px;
+    }
+
+    .hero {
+      background: rgba(255,255,255,0.75);
+      border: 1px solid #f8dce5;
+      border-radius: 30px;
+      padding: 45px 20px;
+      box-shadow: 0 15px 45px rgba(190, 128, 148, 0.12);
+    }
+
+    .bow {
+      font-size: 48px;
+      animation: float 3s infinite;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      color: #c76d8c;
+      font-size: clamp(42px, 9vw, 72px);
+      margin: 15px 0;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #94747d;
+      margin-bottom: 25px;
+    }
+
+    .name {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      color: #d47b9b;
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+
+    .message {
+      min-height: 70px;
+      font-size: 17px;
+      line-height: 1.8;
+      color: #795d66;
+      padding: 0 10px;
+    }
+
+    .divider {
+      color: #df9db4;
+      font-size: 23px;
+      margin: 20px 0;
+      letter-spacing: 8px;
+    }
+
+    .celebration {
+      font-size: 55px;
+      margin: 20px 0;
+    }
+
+    .section {
+      margin-top: 35px;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid #f7dce5;
+      border-radius: 25px;
+      padding: 30px 22px;
+      box-shadow: 0 10px 35px rgba(190, 128, 148, 0.09);
+    }
+
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      color: #c76d8c;
+      font-size: 27px;
+      margin-bottom: 15px;
+    }
+
+    .section p {
+      line-height: 1.9;
+      color: #826873;
+      font-size: 15px;
+    }
+
+    .envelope {
+      position: relative;
+      width: 180px;
+      height: 125px;
+      margin: 35px auto 20px;
+      background: #f2a9c0;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px #e8cbd5;
+      transition: transform 0.3s;
+    }
+
+    .envelope:hover {
+      transform: translateY(-6px);
+    }
+
+    .envelope::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-left: 90px solid transparent;
+      border-right: 90px solid transparent;
+      border-top: 70px solid #e98fab;
+      transform-origin: top;
+      transition: transform 0.5s;
+      z-index: 3;
+    }
+
+    .envelope.open::before {
+      transform: rotateX(180deg);
+    }
+
+    .envelope::after {
+      content: "❤️";
+      position: absolute;
+      top: 53px;
+      left: 72px;
+      font-size: 35px;
+      z-index: 4;
+    }
+
+    .envelope-text {
+      color: #d17b98;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .letter {
+      display: none;
+      text-align: left;
+      background: #fff4f5;
+      border: 1px dashed #e7a6bb;
+      border-radius: 18px;
+      padding: 25px;
+      margin-top: 25px;
+      line-height: 2;
+      animation: appear 0.7s ease;
+    }
+
+    .letter h3 {
+      font-family: 'Playfair Display', serif;
+      color: #c76d8c;
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    button {
+      border: none;
+      background: #d987a4;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 5px 15px #edcfda;
+      transition: 0.3s;
+      font-family: inherit;
+    }
+
+    button:hover {
+      background: #c66e90;
+      transform: translateY(-3px);
+    }
+
+    .footer {
+      margin-top: 35px;
+      color: #bd8a9b;
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -30px;
+      pointer-events: none;
+      z-index: 5;
+      animation: rise linear forwards;
+    }
+
+    @keyframes rise {
+      to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .petal {
+      position: fixed;
+      top: -30px;
+      pointer-events: none;
+      z-index: 1;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(600deg);
+        opacity: 0.2;
+      }
+    }
+
+    #confetti {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    @media(max-width: 600px) {
+      .container { padding: 30px 15px 50px; }
+      .hero { padding: 35px 15px; }
+      .section { padding: 25px 17px; }
+      .message { font-size: 15px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="background"></div>
+
+  <div class="decor d1">🎀</div>
+  <div class="decor d2">🧸</div>
+  <div class="decor d3">🌷</div>
+  <div class="decor d4">💗</div>
+
+  <canvas id="confetti"></canvas>
+
+  <main class="container">
+
+    <div class="top-label">A LITTLE SOMETHING FOR YOU ✨</div>
+
+    <section class="hero">
+
+      <div class="bow">🎀</div>
+
+      <div class="name">Hey, Aaru! ❤️</div>
+
+      <h1>You Did It!!</h1>
+
+      <p class="subtitle">
+        Someone deserves a little celebration today.
+      </p>
+
+      <div class="divider">♡ ✦ ♡</div>
+
+      <div class="message" id="typing">
+        Congratulations on passing your CS exam! 💗
+      </div>
+
+      <div class="celebration">🥳 🌸 🧸</div>
+
+      <p class="subtitle">
+        All that hard work finally paid off.
+      </p>
+
+      <button onclick="celebrate()">
+        Celebrate!! 🎉
+      </button>
+
+    </section>
+
+    <section class="section">
+
+      <h2>A little reminder 🌷</h2>
+
+      <p>
+        You should be really proud of yourself, Aaru.
+        Every bit of effort, every stressful moment and
+        every late night was worth it.
+        <br><br>
+        I hope you keep achieving everything you dream of.
+        You deserve all the good things coming your way. 💕
+      </p>
+
+      <div class="divider">♡ ♡ ♡</div>
+
+      <div style="font-size:38px;">🐻‍❄️ 🎀 🌸</div>
+
+    </section>
+
+    <section class="section">
+
+      <h2>One tiny surprise... 💌</h2>
+
+      <p>
+        I may have something else to tell you.
+        But first, open this little letter.
+      </p>
+
+      <div class="envelope" id="envelope" onclick="openLetter()"></div>
+
+      <div class="envelope-text" id="envelopeHint">
+        Tap the envelope to open it ♡
+      </div>
+
+      <div class="letter" id="letter">
+
+        <h3>Dear Aaru, 🌷</h3>
+
+        <p>
+          First of all, CONGRATULATIONS!!
+          I'm genuinely so happy for you.
+          You worked hard for this, and you deserve
+          every bit of this achievement.
+        </p>
+
+        <p>
+          Keep believing in yourself, keep chasing
+          your dreams and never stop being the
+          wonderful person you are.
+        </p>
+
+        <p>
+          And honestly, getting to know you has been
+          one of those unexpectedly nice things.
+          You make ordinary moments a little more special. 🤭
+        </p>
+
+        <p>
+          So here's a little reminder:
+          you're capable of amazing things,
+          and I'm always rooting for you. ❤️
+        </p>
+
+        <p style="text-align:right; color:#c76d8c;">
+          With a little extra smile,<br>
+          Someone who thinks you're pretty special ♡
+        </p>
+
+      </div>
+
+    </section>
+
+    <section class="section">
+
+      <h2>And finally... 💗</h2>
+
+      <p>
+        May your future be filled with success,
+        happiness, beautiful memories and lots of reasons
+        to smile.
+        <br><br>
+        Keep being you, Aaru. That's already pretty amazing.
+      </p>
+
+      <div style="font-size:38px; margin-top:20px;">
+        🧸 💐 💌
+      </div>
+
+    </section>
+
+    <footer class="footer">
+      Made with a little extra effort and lots of good wishes ❤️
+      <br>
+      P.S. Don't forget to smile today. You look better doing that. 🤭
+    </footer>
+
+  </main>
+
+  <script>
+    // Floating hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = ["❤️", "💗", "💕", "💖", "♡"][
+        Math.floor(Math.random() * 5)
+      ];
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (14 + Math.random() * 18) + "px";
+      heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 10000);
+    }
+
+    setInterval(createHeart, 650);
+
+    // Falling petals
+    function createPetal() {
+      const petal = document.createElement("div");
+      petal.className = "petal";
+      petal.innerHTML = ["🌸", "🌷", "✨"][
+        Math.floor(Math.random() * 3)
+      ];
+
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.fontSize = (12 + Math.random() * 13) + "px";
+      petal.style.animationDuration = (6 + Math.random() * 6) + "s";
+
+      document.body.appendChild(petal);
+
+      setTimeout(() => petal.remove(), 12000);
+    }
+
+    setInterval(createPetal, 1300);
+
+    // Interactive letter
+    function openLetter() {
+      const letter = document.getElementById("letter");
+      const envelope = document.getElementById("envelope");
+      const hint = document.getElementById("envelopeHint");
+
+      if (letter.style.display === "block") {
+        return;
+      }
+
+      envelope.classList.add("open");
+      letter.style.display = "block";
+      hint.innerHTML = "A little message, just for you ❤️";
+
+      letter.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+
+      celebrate();
+    }
+
+    // Confetti
+    const canvas = document.getElementById("confetti");
+    const ctx = canvas.getContext("2d");
+
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    function celebrate() {
+      for (let i = 0; i < 150; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: -20 - Math.random() * canvas.height * 0.5,
+          size: 4 + Math.random() * 6,
+          speed: 2 + Math.random() * 5,
+          drift: Math.random() * 3 - 1.5,
+          color: ["#f2a5c0", "#ffd166", "#b8c9ff",
+                  "#f7c8d0", "#c9e7d2"][
+            Math.floor(Math.random() * 5)
+          ],
+          rotation: Math.random() * 360
+        });
+      }
+    }
+
+    function animateConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((p, index) => {
+        p.y += p.speed;
+        p.x += p.drift;
+        p.rotation += 4;
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation * Math.PI / 180);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+        ctx.restore();
+
+        if (p.y > canvas.height + 20) {
+          particles.splice(index, 1);
+        }
+      });
+
+      requestAnimationFrame(animateConfetti);
+    }
+
+    animateConfetti();
+
+    // Typing animation
+    const messages = [
+      "Congratulations on passing your CS exam! 💗",
+      "All your hard work finally paid off! ✨",
+      "You absolutely deserve this happiness! 🌷",
+      "I'm genuinely so proud of you, Aaru! ❤️",
+      "Keep shining and making everyone smile! 🎀"
+    ];
+
+    let messageIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    const typingElement = document.getElementById("typing");
+
+    function typeMessage() {
+      const current = messages[messageIndex];
+
+      if (!deleting) {
+        typingElement.textContent = current.substring(0, charIndex + 1);
+        charIndex++;
+
+        if (charIndex === current.length) {
+          deleting = true;
+          setTimeout(typeMessage, 1800);
+          return;
+        }
+      } else {
+        typingElement.textContent = current.substring(0, charIndex - 1);
+        charIndex--;
+
+        if (charIndex === 0) {
+          deleting = false;
+          messageIndex = (messageIndex + 1) % messages.length;
+        }
+      }
+
+      setTimeout(typeMessage, deleting ? 30 : 65);
+    }
+
+    typeMessage();
+
+    // Initial celebration
+    setTimeout(celebrate, 700);
+  </script>
+
+</body>
+</html>
